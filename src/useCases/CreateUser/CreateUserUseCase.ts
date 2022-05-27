@@ -22,5 +22,17 @@ export class CreateUserUseCase {
 
   }
 }
-// Single responsability principle: a classe se responsabiliza em apenas validar se usuario existe e criar
-// Nao tem resabilidade de saber como esse usuario sera salvo, etc.
+/* 
+1 - Single responsability principle: a classe se responsabiliza em apenas validar se usuario existe e 
+    criar. Nao tem resabilidade de saber como esse usuario sera salvo no banco, etc.
+
+3 - Liskov substitution principle - a partir do momento que essa classe recebe o repositorio 
+    (que sao classes especificas para fazer comunicacao entre na camada externa da aplicacao) 
+    falando que o tipo dele e uma interface que define metodos que vao existir no repositorio,
+    eu estou defendendo esse principio. NAO IMPORTA SE HOUVER TROCA NA CAMADA EXTERNA, TIPO DE 
+    BANCO, POR EXEMPLO, AINDA ASSIM TUDO IRA FUNCIONAR.
+
+5 - Dependency inversion principle: Essa classe e uma abstracao da real implementacao, em outras palavras, 
+    ela nao depende de metodos internos para que ela funcione. Ela vai depender de uma outra classe que
+    faz a implementacao.
+*/
