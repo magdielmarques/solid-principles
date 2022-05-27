@@ -1,11 +1,13 @@
 import { User } from "../../entities/User";
+import { IMailProvider } from "../../providers/IMailProvider";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { ICreateUserRequestDTO } from "./CreateUserDTO";
 export class CreateUserUseCase {
   // private usersRepository: IUsersRepository;
 
   constructor(
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    private mailProvider: IMailProvider, 
     // usersRepository: IUsersRepository
   ) {
     // this.usersRepository = usersRepository;
@@ -20,6 +22,18 @@ export class CreateUserUseCase {
 
     await this.usersRepository.save(user);
 
+    this.mailProvider.sendMail({
+      to: {
+        name: data.name,
+        email: data.email,
+      },
+      from: {
+        name: 'Equipe da empresa de Magdiel',
+        email: 'contato.magdiel@gmail.com',
+      },
+      subject: 'Seja bem-vindo!',
+      body: '<h1>Voce ja pode fazer login em nossa plataforma.</h1>'
+    })
   }
 }
 /* 
