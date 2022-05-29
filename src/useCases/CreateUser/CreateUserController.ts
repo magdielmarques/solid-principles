@@ -3,14 +3,14 @@ import { CreateUserUseCase } from "./CreateUserUseCase";
 
 export class CreateUserController {
   constructor(
-    private createUsersUseCase: CreateUserUseCase,
+    private createUserUseCase: CreateUserUseCase,
   ) {}
 
   async handle(req: Request, res: Response): Promise<Response> {
     const { name, email, password } = req.body;
 
     try {
-      await this.createUsersUseCase.execute({
+      await this.createUserUseCase.execute({
         name, 
         email, 
         password
